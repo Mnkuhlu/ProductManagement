@@ -3,6 +3,7 @@
     "ProductManagement.Web": {
       "commandName": "Project",
       "launchBrowser": true,
+      "launchUrl": "products",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
