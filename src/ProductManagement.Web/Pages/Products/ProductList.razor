@@ -1,0 +1,54 @@
+@page "/products"
+@inject ProductManagement.Data.Repositories.IProductRepository ProductRepository
+
+<h3>Products</h3>
+
+<p><em>
+    Phase 1 skeleton - this page just proves the DI pipeline (Blazor -> Repository -> Dapper -> SQL Server)
+    is wired up end to end. The real grid, "Add Product" button, clickable ProductId links, and the
+    edit/delete popup are built in Phase 2 onward.
+</em></p>
+
+@if (_products is null)
+{
+    <p>Loading...</p>
+}
+else if (!_products.Any())
+{
+    <p>No products found. (Have you run the scripts in /database and pointed appsettings.json at your SQL Server?)</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product Id</th>
+                <th>Product Name</th>
+                <th>Category</th>
+                <th>Supplier</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in _products)
+            {
+                <tr>
+                    <td>@product.ProductId</td>
+                    <td>@product.ProductName</td>
+                    <td>@product.ProductCategory</td>
+                    <td>@product.SupplierName</td>
+                    <td>@product.Price.ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private IEnumerable<ProductManagement.Domain.Models.Product>? _products;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _products = await ProductRepository.GetAllAsync();
+    }
+}
