@@ -3,7 +3,7 @@
     All C# data access goes through these - no inline SQL in the app.
 */
 
-CREATE OR ALTER PROCEDURE dbo.usp_Product_GetAll
+CREATE  PROCEDURE dbo.usp_Product_GetAll
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -14,7 +14,7 @@ BEGIN
 END
 GO
 
-CREATE OR ALTER PROCEDURE dbo.usp_Product_GetById
+CREATE  PROCEDURE dbo.usp_Product_GetById
     @ProductId INT
 AS
 BEGIN
@@ -26,7 +26,7 @@ BEGIN
 END
 GO
 
-CREATE OR ALTER PROCEDURE dbo.usp_Product_Insert
+CREATE  PROCEDURE dbo.usp_Product_Insert
     @ProductName     NVARCHAR(200),
     @ProductCategory NVARCHAR(100),
     @SupplierName    NVARCHAR(200),
@@ -43,7 +43,7 @@ BEGIN
 END
 GO
 
-CREATE OR ALTER PROCEDURE dbo.usp_Product_Update
+CREATE  PROCEDURE dbo.usp_Product_Update
     @ProductId       INT,
     @ProductName     NVARCHAR(200),
     @ProductCategory NVARCHAR(100),
@@ -63,7 +63,7 @@ BEGIN
 END
 GO
 
-CREATE OR ALTER PROCEDURE dbo.usp_Product_Delete
+CREATE  PROCEDURE dbo.usp_Product_Delete
     @ProductId INT
 AS
 BEGIN
